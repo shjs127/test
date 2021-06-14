@@ -11,9 +11,9 @@ public class LoginService {
 
 	private USERINFODao userinfoDao = new USERINFODao();
 
-	public User login(String id, String password) {
+	public User login(String userId, String password) {
 		try (Connection conn = ConnectionProvider.getConnection()) {
-			USERINFO userinfo = userinfoDao.selectById(conn, id);
+			USERINFO userinfo = userinfoDao.selectById(conn, userId);
 			if (userinfo == null) {
 				throw new LoginFailException();
 			}

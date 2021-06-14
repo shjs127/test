@@ -23,6 +23,10 @@ public class STOREINFO {
 		this.manageNo=manageNo;
 	}
 
+	public STOREINFO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getStoreNo() {
 		return storeNo;
 	}

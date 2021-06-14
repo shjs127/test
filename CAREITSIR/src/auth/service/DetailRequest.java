@@ -1,12 +1,14 @@
 package auth.service;
 
 import java.util.Map;
+import member.model.*;
 
 public class DetailRequest {
 	
+	STOREINFO storeinfo=new STOREINFO();
 	private int storeNo;
 	private int totalSeat;  // "lee"
-	private  int socketSeat;
+	private int socketSeat;
 	private String dessertSales;
 	private String terrace;
 	private String roofTop;
@@ -16,12 +18,6 @@ public class DetailRequest {
 	private String nokidsZone;
 	private String smokingArea;
 	
-		public int getStoreNo() {
-		return storeNo;
-	}
-	public void setStoreNo(int storeNo) {
-		this.storeNo = storeNo;
-	}
 	
 	public int getTotalSeat() {
 		return totalSeat;

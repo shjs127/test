@@ -20,40 +20,48 @@ public class StoreService {
 	private STOREINFODao storeinfoDao = new STOREINFODao();
 	private DETAILINFODao detailinfoDao = new DETAILINFODao();
 	
+	
 	public int store(StoreRequest storeReq, DetailRequest detailReq) {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
 			conn.setAutoCommit(false);
+			System.out.println("storeReq="+storeReq);
 			
+			STOREINFO storeSel = STOREINFODao.selectById(conn, storeReq.getManageNo());
+			System.out.println("storeSel="+storeSel);
+			
+			if (storeSel != null) {
+				JdbcUtil.rollback(conn);
+				throw new DuplicateIdException();
+			}
 			STOREINFO storeinfo =toStore(storeReq);
-			STOREINFO savedStore = storeinfoDao.insert(conn, storeinfo);
-			if (savedStore != null) {
+			int savedStoreNo = storeinfoDao.insert(conn, storeinfo);
+			if (savedStoreNo == 0) {
 				JdbcUtil.rollback(conn);
 				throw new RuntimeException("fail to insert storeinfo");
 			}
 			//storeinfo의 storeno을 받아서 새로운 detailinfo 생성
-			DETAILINFO detailInfo=new DETAILINFO(
-					savedStore.getStoreNo(),
-					detailReq.getTotalSeat(),
-					detailReq.getSocketSeat(),
-					detailReq.getDessertSales(),
-					detailReq.getTerrace(),
-					detailReq.getRoofTop(),
-					detailReq.getWifi(),
-					detailReq.getCompanionDog(),
-					detailReq.getParkingSpace(),
-					detailReq.getNokidsZone(),
-					detailReq.getSmokingArea()
-					);
-			DETAILINFO savedDetail=detailinfoDao.insert(conn, detailInfo);
-			if (savedDetail == null) {
-				throw new RuntimeException("fail to insert detailinfo");
-			}
+			
+			
+			  DETAILINFO detailInfo=new DETAILINFO( savedStoreNo, detailReq.getTotalSeat(),
+			  detailReq.getSocketSeat(), detailReq.getDessertSales(),
+			  detailReq.getTerrace(), detailReq.getRoofTop(), detailReq.getWifi(),
+			  detailReq.getCompanionDog(), detailReq.getParkingSpace(),
+			  detailReq.getNokidsZone(), detailReq.getSmokingArea() ); 
+			  
+			  DETAILINFO savedDetail=detailinfoDao.insert(conn, detailInfo); 
+			  
+			  if (savedDetail == null)
+			  { throw new RuntimeException("fail to insert detailinfo"); }
+			 
+			
 			
 			conn.commit();
+			
+			System.out.println("savedStoreNo="+savedStoreNo);
 
-			return savedStore.getStoreNo();
+			return savedStoreNo;
 		} catch (SQLException e) {
 			JdbcUtil.rollback(conn);
 			throw new RuntimeException(e);

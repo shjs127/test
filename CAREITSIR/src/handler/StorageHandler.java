@@ -19,6 +19,7 @@ public class StorageHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/main/storeStorage.jsp";
 	private StoreService storeService = new StoreService();
 	private DetailService detailService = new DetailService();
+
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) {
 		if (req.getMethod().equalsIgnoreCase("GET")) {
@@ -46,30 +47,32 @@ public class StorageHandler implements CommandHandler {
 		storeReq.setManageNo(req.getParameter("manageNo"));
 
 		DetailRequest detailReq = new DetailRequest();
-		detailReq.setTotalSeat(Integer.parseInt(req.getParameter("totalSeat")));
-		detailReq.setSocketSeat(Integer.parseInt(req.getParameter("socketSeat")));
-		detailReq.setDessertSales(req.getParameter("dessertSales"));
-		detailReq.setTerrace(req.getParameter("terrace"));
-		detailReq.setRoofTop(req.getParameter("roofTop"));
-		detailReq.setWifi(req.getParameter("wifi"));
-		detailReq.setCompanionDog(req.getParameter("companionDog"));
-		detailReq.setParkingSpace(req.getParameter("parkingSpace"));
-		detailReq.setNokidsZone(req.getParameter("nokidsZone"));
-		detailReq.setSmokingArea(req.getParameter("smokingArea"));
+
 		
-		
+		  detailReq.setTotalSeat(Integer.parseInt(req.getParameter("totalSeat")));
+		  detailReq.setSocketSeat(Integer.parseInt(req.getParameter("socketSeat")));
+		  detailReq.setDessertSales(req.getParameter("dessertSales"));
+		  detailReq.setTerrace(req.getParameter("terrace"));
+		  detailReq.setRoofTop(req.getParameter("roofTop"));
+		  detailReq.setWifi(req.getParameter("wifi"));
+		  detailReq.setCompanionDog(req.getParameter("companionDog"));
+		  detailReq.setParkingSpace(req.getParameter("parkingSpace"));
+		  detailReq.setNokidsZone(req.getParameter("noKidsZone"));
+		  detailReq.setSmokingArea(req.getParameter("smokingArea"));
+		  
+		 
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
-		
-		storeReq.validate(errors);  // errors = {"name":true, "confirmPw":true}
-		
+
+		storeReq.validate(errors); // errors = {"name":true, "confirmPw":true}
+
 		if (!errors.isEmpty()) {
 			return FORM_VIEW;
 		}
-		
+
 		try {
-	
-			storeService.store(storeReq,detailReq);
+
+			storeService.store(storeReq, detailReq);
 			return "/WEB-INF/view/main/storageSuccess.jsp";
 		} catch (DuplicateIdException e) {
 			errors.put("duplicateId", Boolean.TRUE);

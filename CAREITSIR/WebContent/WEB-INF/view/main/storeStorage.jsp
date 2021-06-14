@@ -119,7 +119,7 @@
                                                 <label>
                                                     <input type="radio" name="dessertSales" value="Y" >
                                                     있음(가능)           
-                                                      <input type="radio" name="dessertSales" value="N">
+                                                      <input type="radio" name="dessertSales" value="N" checked>
                                                     없음(불가능)      
                                                 </label>
                                             </div>
@@ -132,7 +132,7 @@
                                                 <label>
                                                     <input type="radio" name="terrace" value="Y" >
                                                     있음(가능)           
-                                                      <input type="radio" name="terrace" value="N">
+                                                      <input type="radio" name="terrace" value="N" checked>
                                                     없음(불가능)      
                                                 </label>
                                             </div>
@@ -145,7 +145,7 @@
                                                 <label>
                                                     <input type="radio" name="roofTop" value="Y" >
                                                     있음(가능)           
-                                                      <input type="radio" name="roofTop" value="N">
+                                                      <input type="radio" name="roofTop" value="N" checked>
                                                     없음(불가능)      
                                                 </label>
                                             </div>
@@ -158,7 +158,7 @@
                                                 <label>
                                                     <input type="radio" name="wifi" value="Y" >
                                                     있음(가능)           
-                                                      <input type="radio" name="wifi" value="N">
+                                                      <input type="radio" name="wifi" value="N" checked>
                                                     없음(불가능)      
                                                 </label>
                                             </div>
@@ -171,7 +171,7 @@
                                                 <label>
                                                     <input type="radio" name="companionDog" value="Y" >
                                                     있음(가능)           
-                                                      <input type="radio" name="companionDog" value="N">
+                                                      <input type="radio" name="companionDog" value="N" checked>
                                                     없음(불가능)      
                                                 </label>
                                             </div>
@@ -184,7 +184,7 @@
                                                 <label>
                                                     <input type="radio" name="parkingSpace" value="Y" >
                                                     있음(가능)           
-                                                      <input type="radio" name="parkingSpace" value="N">
+                                                      <input type="radio" name="parkingSpace" value="N" checked>
                                                     없음(불가능)      
                                                 </label>
                                             </div>
@@ -197,7 +197,7 @@
                                                 <label>
                                                     <input type="radio" name="noKidsZone" value="Y" >
                                                     있음(가능)           
-                                                      <input type="radio" name="noKidsZone" value="N">
+                                                      <input type="radio" name="noKidsZone" value="N" checked>
                                                     없음(불가능)      
                                                 </label>
                                             </div>
@@ -210,7 +210,7 @@
                                                 <label>
                                                     <input type="radio" name="smokingArea" value="Y" >
                                                     있음(가능)           
-                                                      <input type="radio" name="smokingArea" value="N">
+                                                      <input type="radio" name="smokingArea" value="N" checked>
                                                     없음(불가능)      
                                                 </label>
                                             </div>

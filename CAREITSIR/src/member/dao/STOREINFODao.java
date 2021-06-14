@@ -16,13 +16,13 @@ import member.model.STOREINFO;
 
 public class STOREINFODao {
 
-	public STOREINFO selectById(Connection conn, int storeNo) throws SQLException {
+	public static STOREINFO selectById(Connection conn, String manageNo) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(
-					"select * from STOREINFO where STORENO = ?");
-			pstmt.setInt(1, storeNo);
+					"select * from STOREINFO where manageNo = ?");
+			pstmt.setString(1, manageNo);
 			rs = pstmt.executeQuery();
 			STOREINFO storeinfo = null;
 			if (rs.next()) {
@@ -45,9 +45,12 @@ public class STOREINFODao {
 
 
 
-	public STOREINFO insert(Connection conn, STOREINFO storeinfo) throws SQLException {
+	public int insert(Connection conn, STOREINFO storeinfo) throws SQLException {
+		Statement stmt = null;
+		ResultSet rs = null;
+		
 		try(PreparedStatement pstmt = 
-				conn.prepareStatement("insert into USERINFO"
+				conn.prepareStatement("insert into STOREINFO"
 						+ " values(STORENUM.NEXTVAL,?,?,?,?,?,?,?)")) {
 
 			pstmt.setString(1, storeinfo.getStoreName());
@@ -57,9 +60,19 @@ public class STOREINFODao {
 			pstmt.setString(5, storeinfo.getClosedDay());
 			pstmt.setString(6, storeinfo.getCallNumber());
 			pstmt.setString(7, storeinfo.getManageNo());
-			pstmt.executeUpdate();
-	}
-		return null;
+			//pstmt.setString(7, storeinfo.getStoreName());
+			int insertedCount = pstmt.executeUpdate();
+			
+			if (insertedCount > 0) {
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery("select STORENUM.currval from dual");
+				if (rs.next()) {
+					Integer newNo = rs.getInt(1);
+					return newNo;
+				}
+			}
+			return 0;
+		}
 }
 
 	public int selectCount(Connection conn) throws SQLException {

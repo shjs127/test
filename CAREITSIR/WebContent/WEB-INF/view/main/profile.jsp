@@ -48,7 +48,7 @@
 																class="col-sm-3 col-form-label text-right">이 름 :</label>
 															<div class="col-sm-9">
 																<input type="text" class="form-control" name="name"
-																	placeholder="${authUser.name }">
+																	placeholder="${authUser.nickName }">
 															</div>
 														</div>
 														<div class="form-group row">

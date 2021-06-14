@@ -17,7 +17,7 @@ public class USERINFODao {
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(
-					"select * from USERINFO where USERID = ?");
+					"select * from USERINFO where userId = ?");
 			pstmt.setString(1, userId);
 			rs = pstmt.executeQuery();
 			USERINFO userinfo = null;

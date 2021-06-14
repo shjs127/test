@@ -14,14 +14,12 @@
                         <h4 class="text-spl-color">기존 회원 로그인</h4>
                     <!-- Login Form Starts -->
                     <p class="login-box-msg">
-<!--  		<c:if test="${errors.idOrPwNotMatch}">
+<%--  		<c:if test="${errors.idOrPwNotMatch}">
 					아이디와 암호가 일치하지 않습니다.
-				</c:if>  -->
+				</c:if> 
 				<c:if test="${errors.id}">ID를 입력하세요.</c:if>
-				<c:if test="${errors.password}">암호를 입력하세요.</c:if>
+				<c:if test="${errors.password}">암호를 입력하세요.</c:if> --%>
 			</p>
-
-                        <form action="login.do" method="post">
 
                         <form action="${pageContext.request.contextPath}/login.do" method="post">
 
@@ -58,16 +56,37 @@
                 <!-- Divider For Small Ends -->
                 <!-- Register Col Starts -->
                     <div class="col-md-5 col-sm-12 offset-md-2">
-                        <h4 class="text-spl-color">Login for first time user?</h4>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard..</p>
-                        <button type="submit" class="btn btn-block btn-tertiary animation" data-toggle="modal" data-target="#registerModal">
-                            Continue To Register <i class="fa fa-caret-right"></i>
-                        </button>
-                        <hr>
-                        <a href="#" class="btn btn-block btn-twitter animation">
-                        <i class="fa fa-twitter"></i> Sign in with Twitter</a>
-                        <a href="#" class="btn btn-block btn-fb animation"><i class="fa fa-facebook"></i> Sign in with Facebook</a>
-                        <a href="#" class="btn btn-block btn-prime tiny animation"><i class="fa fa-google-plus"></i> Sign in with Google</a>
+                        <h4 class="text-spl-color">기업 회원 로그인</h4>
+                    <!-- Login Form Starts -->
+                    <p class="login-box-msg">
+					</p>
+
+                        <form action="${pageContext.request.contextPath}/storein.do" method="post">
+
+                            <div class="form-group">
+                           
+                                <input type="text" class="form-control" name="manageNo" id="login-email" placeholder="manageNo">
+                            </div>
+                            <div class="form-group">
+               
+                                <input type="password" class="form-control" name="storeNo" id="login-password" placeholder="storeNo">
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Remember me
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-block btn-prime animation">
+                                Login <i class="fa fa-caret-right"></i>
+                            </button>
+                            <br>
+ 							<a href="<%=request.getContextPath()%>/main/storage.do" class="text-center">매장 등록</a>
+                            
+                            <div class="form-group">
+                                <p class="help-block">비밀번호를 잃어버리셨습니까? <a href="#">Click here</a></p>
+                            </div>
+                        </form>
+                    <!-- Login Form Ends -->
                     </div>
                 <!-- Register Col Ends -->
                 </div>
